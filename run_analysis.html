@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+<title>Getting and Cleaning Data Course Project</title>
+
+<script type="text/javascript">
+window.onload = function() {
+  var imgs = document.getElementsByTagName('img'), i, img;
+  for (i = 0; i < imgs.length; i++) {
+    img = imgs[i];
+    // center an image if it is the only element of its parent
+    if (img.parentElement.childElementCount === 1)
+      img.parentElement.style.textAlign = 'center';
+  }
+};
+</script>
+
+<!-- Styles for R syntax highlighter -->
+<style type="text/css">
+   pre .operator,
+   pre .paren {
+     color: rgb(104, 118, 135)
+   }
+
+   pre .literal {
+     color: #990073
+   }
+
+   pre .number {
+     color: #099;
+   }
+
+   pre .comment {
+     color: #998;
+     font-style: italic
+   }
+
+   pre .keyword {
+     color: #900;
+     font-weight: bold
+   }
+
+   pre .identifier {
+     color: rgb(0, 0, 0);
+   }
+
+   pre .string {
+     color: #d14;
+   }
+</style>
+
+<!-- R syntax highlighter -->
+<script type="text/javascript">
+var hljs=new function(){function m(p){return p.replace(/&/gm,"&amp;").replace(/</gm,"&lt;")}function f(r,q,p){return RegExp(q,"m"+(r.cI?"i":"")+(p?"g":""))}function b(r){for(var p=0;p<r.childNodes.length;p++){var q=r.childNodes[p];if(q.nodeName=="CODE"){return q}if(!(q.nodeType==3&&q.nodeValue.match(/\s+/))){break}}}function h(t,s){var p="";for(var r=0;r<t.childNodes.length;r++){if(t.childNodes[r].nodeType==3){var q=t.childNodes[r].nodeValue;if(s){q=q.replace(/\n/g,"")}p+=q}else{if(t.childNodes[r].nodeName=="BR"){p+="\n"}else{p+=h(t.childNodes[r])}}}if(/MSIE [678]/.test(navigator.userAgent)){p=p.replace(/\r/g,"\n")}return p}function a(s){var r=s.className.split(/\s+/);r=r.concat(s.parentNode.className.split(/\s+/));for(var q=0;q<r.length;q++){var p=r[q].replace(/^language-/,"");if(e[p]){return p}}}function c(q){var p=[];(function(s,t){for(var r=0;r<s.childNodes.length;r++){if(s.childNodes[r].nodeType==3){t+=s.childNodes[r].nodeValue.length}else{if(s.childNodes[r].nodeName=="BR"){t+=1}else{if(s.childNodes[r].nodeType==1){p.push({event:"start",offset:t,node:s.childNodes[r]});t=arguments.callee(s.childNodes[r],t);p.push({event:"stop",offset:t,node:s.childNodes[r]})}}}}return t})(q,0);return p}function k(y,w,x){var q=0;var z="";var s=[];function u(){if(y.length&&w.length){if(y[0].offset!=w[0].offset){return(y[0].offset<w[0].offset)?y:w}else{return w[0].event=="start"?y:w}}else{return y.length?y:w}}function t(D){var A="<"+D.nodeName.toLowerCase();for(var B=0;B<D.attributes.length;B++){var C=D.attributes[B];A+=" "+C.nodeName.toLowerCase();if(C.value!==undefined&&C.value!==false&&C.value!==null){A+='="'+m(C.value)+'"'}}return A+">"}while(y.length||w.length){var v=u().splice(0,1)[0];z+=m(x.substr(q,v.offset-q));q=v.offset;if(v.event=="start"){z+=t(v.node);s.push(v.node)}else{if(v.event=="stop"){var p,r=s.length;do{r--;p=s[r];z+=("</"+p.nodeName.toLowerCase()+">")}while(p!=v.node);s.splice(r,1);while(r<s.length){z+=t(s[r]);r++}}}}return z+m(x.substr(q))}function j(){function q(x,y,v){if(x.compiled){return}var u;var s=[];if(x.k){x.lR=f(y,x.l||hljs.IR,true);for(var w in x.k){if(!x.k.hasOwnProperty(w)){continue}if(x.k[w] instanceof Object){u=x.k[w]}else{u=x.k;w="keyword"}for(var r in u){if(!u.hasOwnProperty(r)){continue}x.k[r]=[w,u[r]];s.push(r)}}}if(!v){if(x.bWK){x.b="\\b("+s.join("|")+")\\s"}x.bR=f(y,x.b?x.b:"\\B|\\b");if(!x.e&&!x.eW){x.e="\\B|\\b"}if(x.e){x.eR=f(y,x.e)}}if(x.i){x.iR=f(y,x.i)}if(x.r===undefined){x.r=1}if(!x.c){x.c=[]}x.compiled=true;for(var t=0;t<x.c.length;t++){if(x.c[t]=="self"){x.c[t]=x}q(x.c[t],y,false)}if(x.starts){q(x.starts,y,false)}}for(var p in e){if(!e.hasOwnProperty(p)){continue}q(e[p].dM,e[p],true)}}function d(B,C){if(!j.called){j();j.called=true}function q(r,M){for(var L=0;L<M.c.length;L++){if((M.c[L].bR.exec(r)||[null])[0]==r){return M.c[L]}}}function v(L,r){if(D[L].e&&D[L].eR.test(r)){return 1}if(D[L].eW){var M=v(L-1,r);return M?M+1:0}return 0}function w(r,L){return L.i&&L.iR.test(r)}function K(N,O){var M=[];for(var L=0;L<N.c.length;L++){M.push(N.c[L].b)}var r=D.length-1;do{if(D[r].e){M.push(D[r].e)}r--}while(D[r+1].eW);if(N.i){M.push(N.i)}return f(O,M.join("|"),true)}function p(M,L){var N=D[D.length-1];if(!N.t){N.t=K(N,E)}N.t.lastIndex=L;var r=N.t.exec(M);return r?[M.substr(L,r.index-L),r[0],false]:[M.substr(L),"",true]}function z(N,r){var L=E.cI?r[0].toLowerCase():r[0];var M=N.k[L];if(M&&M instanceof Array){return M}return false}function F(L,P){L=m(L);if(!P.k){return L}var r="";var O=0;P.lR.lastIndex=0;var M=P.lR.exec(L);while(M){r+=L.substr(O,M.index-O);var N=z(P,M);if(N){x+=N[1];r+='<span class="'+N[0]+'">'+M[0]+"</span>"}else{r+=M[0]}O=P.lR.lastIndex;M=P.lR.exec(L)}return r+L.substr(O,L.length-O)}function J(L,M){if(M.sL&&e[M.sL]){var r=d(M.sL,L);x+=r.keyword_count;return r.value}else{return F(L,M)}}function I(M,r){var L=M.cN?'<span class="'+M.cN+'">':"";if(M.rB){y+=L;M.buffer=""}else{if(M.eB){y+=m(r)+L;M.buffer=""}else{y+=L;M.buffer=r}}D.push(M);A+=M.r}function G(N,M,Q){var R=D[D.length-1];if(Q){y+=J(R.buffer+N,R);return false}var P=q(M,R);if(P){y+=J(R.buffer+N,R);I(P,M);return P.rB}var L=v(D.length-1,M);if(L){var O=R.cN?"</span>":"";if(R.rE){y+=J(R.buffer+N,R)+O}else{if(R.eE){y+=J(R.buffer+N,R)+O+m(M)}else{y+=J(R.buffer+N+M,R)+O}}while(L>1){O=D[D.length-2].cN?"</span>":"";y+=O;L--;D.length--}var r=D[D.length-1];D.length--;D[D.length-1].buffer="";if(r.starts){I(r.starts,"")}return R.rE}if(w(M,R)){throw"Illegal"}}var E=e[B];var D=[E.dM];var A=0;var x=0;var y="";try{var s,u=0;E.dM.buffer="";do{s=p(C,u);var t=G(s[0],s[1],s[2]);u+=s[0].length;if(!t){u+=s[1].length}}while(!s[2]);if(D.length>1){throw"Illegal"}return{r:A,keyword_count:x,value:y}}catch(H){if(H=="Illegal"){return{r:0,keyword_count:0,value:m(C)}}else{throw H}}}function g(t){var p={keyword_count:0,r:0,value:m(t)};var r=p;for(var q in e){if(!e.hasOwnProperty(q)){continue}var s=d(q,t);s.language=q;if(s.keyword_count+s.r>r.keyword_count+r.r){r=s}if(s.keyword_count+s.r>p.keyword_count+p.r){r=p;p=s}}if(r.language){p.second_best=r}return p}function i(r,q,p){if(q){r=r.replace(/^((<[^>]+>|\t)+)/gm,function(t,w,v,u){return w.replace(/\t/g,q)})}if(p){r=r.replace(/\n/g,"<br>")}return r}function n(t,w,r){var x=h(t,r);var v=a(t);var y,s;if(v){y=d(v,x)}else{return}var q=c(t);if(q.length){s=document.createElement("pre");s.innerHTML=y.value;y.value=k(q,c(s),x)}y.value=i(y.value,w,r);var u=t.className;if(!u.match("(\\s|^)(language-)?"+v+"(\\s|$)")){u=u?(u+" "+v):v}if(/MSIE [678]/.test(navigator.userAgent)&&t.tagName=="CODE"&&t.parentNode.tagName=="PRE"){s=t.parentNode;var p=document.createElement("div");p.innerHTML="<pre><code>"+y.value+"</code></pre>";t=p.firstChild.firstChild;p.firstChild.cN=s.cN;s.parentNode.replaceChild(p.firstChild,s)}else{t.innerHTML=y.value}t.className=u;t.result={language:v,kw:y.keyword_count,re:y.r};if(y.second_best){t.second_best={language:y.second_best.language,kw:y.second_best.keyword_count,re:y.second_best.r}}}function o(){if(o.called){return}o.called=true;var r=document.getElementsByTagName("pre");for(var p=0;p<r.length;p++){var q=b(r[p]);if(q){n(q,hljs.tabReplace)}}}function l(){if(window.addEventListener){window.addEventListener("DOMContentLoaded",o,false);window.addEventListener("load",o,false)}else{if(window.attachEvent){window.attachEvent("onload",o)}else{window.onload=o}}}var e={};this.LANGUAGES=e;this.highlight=d;this.highlightAuto=g;this.fixMarkup=i;this.highlightBlock=n;this.initHighlighting=o;this.initHighlightingOnLoad=l;this.IR="[a-zA-Z][a-zA-Z0-9_]*";this.UIR="[a-zA-Z_][a-zA-Z0-9_]*";this.NR="\\b\\d+(\\.\\d+)?";this.CNR="\\b(0[xX][a-fA-F0-9]+|(\\d+(\\.\\d*)?|\\.\\d+)([eE][-+]?\\d+)?)";this.BNR="\\b(0b[01]+)";this.RSR="!|!=|!==|%|%=|&|&&|&=|\\*|\\*=|\\+|\\+=|,|\\.|-|-=|/|/=|:|;|<|<<|<<=|<=|=|==|===|>|>=|>>|>>=|>>>|>>>=|\\?|\\[|\\{|\\(|\\^|\\^=|\\||\\|=|\\|\\||~";this.ER="(?![\\s\\S])";this.BE={b:"\\\\.",r:0};this.ASM={cN:"string",b:"'",e:"'",i:"\\n",c:[this.BE],r:0};this.QSM={cN:"string",b:'"',e:'"',i:"\\n",c:[this.BE],r:0};this.CLCM={cN:"comment",b:"//",e:"$"};this.CBLCLM={cN:"comment",b:"/\\*",e:"\\*/"};this.HCM={cN:"comment",b:"#",e:"$"};this.NM={cN:"number",b:this.NR,r:0};this.CNM={cN:"number",b:this.CNR,r:0};this.BNM={cN:"number",b:this.BNR,r:0};this.inherit=function(r,s){var p={};for(var q in r){p[q]=r[q]}if(s){for(var q in s){p[q]=s[q]}}return p}}();hljs.LANGUAGES.cpp=function(){var a={keyword:{"false":1,"int":1,"float":1,"while":1,"private":1,"char":1,"catch":1,"export":1,virtual:1,operator:2,sizeof:2,dynamic_cast:2,typedef:2,const_cast:2,"const":1,struct:1,"for":1,static_cast:2,union:1,namespace:1,unsigned:1,"long":1,"throw":1,"volatile":2,"static":1,"protected":1,bool:1,template:1,mutable:1,"if":1,"public":1,friend:2,"do":1,"return":1,"goto":1,auto:1,"void":2,"enum":1,"else":1,"break":1,"new":1,extern:1,using:1,"true":1,"class":1,asm:1,"case":1,typeid:1,"short":1,reinterpret_cast:2,"default":1,"double":1,register:1,explicit:1,signed:1,typename:1,"try":1,"this":1,"switch":1,"continue":1,wchar_t:1,inline:1,"delete":1,alignof:1,char16_t:1,char32_t:1,constexpr:1,decltype:1,noexcept:1,nullptr:1,static_assert:1,thread_local:1,restrict:1,_Bool:1,complex:1},built_in:{std:1,string:1,cin:1,cout:1,cerr:1,clog:1,stringstream:1,istringstream:1,ostringstream:1,auto_ptr:1,deque:1,list:1,queue:1,stack:1,vector:1,map:1,set:1,bitset:1,multiset:1,multimap:1,unordered_set:1,unordered_map:1,unordered_multiset:1,unordered_multimap:1,array:1,shared_ptr:1}};return{dM:{k:a,i:"</",c:[hljs.CLCM,hljs.CBLCLM,hljs.QSM,{cN:"string",b:"'\\\\?.",e:"'",i:"."},{cN:"number",b:"\\b(\\d+(\\.\\d*)?|\\.\\d+)(u|U|l|L|ul|UL|f|F)"},hljs.CNM,{cN:"preprocessor",b:"#",e:"$"},{cN:"stl_container",b:"\\b(deque|list|queue|stack|vector|map|set|bitset|multiset|multimap|unordered_map|unordered_set|unordered_multiset|unordered_multimap|array)\\s*<",e:">",k:a,r:10,c:["self"]}]}}}();hljs.LANGUAGES.r={dM:{c:[hljs.HCM,{cN:"number",b:"\\b0[xX][0-9a-fA-F]+[Li]?\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\b\\d+(?:[eE][+\\-]?\\d*)?L\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\b\\d+\\.(?!\\d)(?:i\\b)?",e:hljs.IMMEDIATE_RE,r:1},{cN:"number",b:"\\b\\d+(?:\\.\\d*)?(?:[eE][+\\-]?\\d*)?i?\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\.\\d+(?:[eE][+\\-]?\\d*)?i?\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"keyword",b:"(?:tryCatch|library|setGeneric|setGroupGeneric)\\b",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\.\\.\\.",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\.\\.\\d+(?![\\w.])",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\b(?:function)",e:hljs.IMMEDIATE_RE,r:2},{cN:"keyword",b:"(?:if|in|break|next|repeat|else|for|return|switch|while|try|stop|warning|require|attach|detach|source|setMethod|setClass)\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"literal",b:"(?:NA|NA_integer_|NA_real_|NA_character_|NA_complex_)\\b",e:hljs.IMMEDIATE_RE,r:10},{cN:"literal",b:"(?:NULL|TRUE|FALSE|T|F|Inf|NaN)\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"identifier",b:"[a-zA-Z.][a-zA-Z0-9._]*\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"operator",b:"<\\-(?!\\s*\\d)",e:hljs.IMMEDIATE_RE,r:2},{cN:"operator",b:"\\->|<\\-",e:hljs.IMMEDIATE_RE,r:1},{cN:"operator",b:"%%|~",e:hljs.IMMEDIATE_RE},{cN:"operator",b:">=|<=|==|!=|\\|\\||&&|=|\\+|\\-|\\*|/|\\^|>|<|!|&|\\||\\$|:",e:hljs.IMMEDIATE_RE,r:0},{cN:"operator",b:"%",e:"%",i:"\\n",r:1},{cN:"identifier",b:"`",e:"`",r:0},{cN:"string",b:'"',e:'"',c:[hljs.BE],r:0},{cN:"string",b:"'",e:"'",c:[hljs.BE],r:0},{cN:"paren",b:"[[({\\])}]",e:hljs.IMMEDIATE_RE,r:0}]}};
+hljs.initHighlightingOnLoad();
+</script>
+
+<!-- MathJax scripts -->
+<script type="text/javascript" src="https://cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+<style type="text/css">
+body, td {
+   font-family: sans-serif;
+   background-color: white;
+   font-size: 13px;
+}
+
+body {
+  max-width: 800px;
+  margin: auto;
+  padding: 1em;
+  line-height: 20px;
+}
+
+tt, code, pre {
+   font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace;
+}
+
+h1 {
+   font-size:2.2em;
+}
+
+h2 {
+   font-size:1.8em;
+}
+
+h3 {
+   font-size:1.4em;
+}
+
+h4 {
+   font-size:1.0em;
+}
+
+h5 {
+   font-size:0.9em;
+}
+
+h6 {
+   font-size:0.8em;
+}
+
+a:visited {
+   color: rgb(50%, 0%, 50%);
+}
+
+pre, img {
+  max-width: 100%;
+}
+pre {
+  overflow-x: auto;
+}
+pre code {
+   display: block; padding: 0.5em;
+}
+
+code {
+  font-size: 92%;
+  border: 1px solid #ccc;
+}
+
+code[class] {
+  background-color: #F8F8F8;
+}
+
+table, td, th {
+  border: none;
+}
+
+blockquote {
+   color:#666666;
+   margin:0;
+   padding-left: 1em;
+   border-left: 0.5em #EEE solid;
+}
+
+hr {
+   height: 0px;
+   border-bottom: none;
+   border-top-width: thin;
+   border-top-style: dotted;
+   border-top-color: #999999;
+}
+
+@media print {
+   * {
+      background: transparent !important;
+      color: black !important;
+      filter:none !important;
+      -ms-filter: none !important;
+   }
+
+   body {
+      font-size:12pt;
+      max-width:100%;
+   }
+
+   a, a:visited {
+      text-decoration: underline;
+   }
+
+   hr {
+      visibility: hidden;
+      page-break-before: always;
+   }
+
+   pre, blockquote {
+      padding-right: 1em;
+      page-break-inside: avoid;
+   }
+
+   tr, img {
+      page-break-inside: avoid;
+   }
+
+   img {
+      max-width: 100% !important;
+   }
+
+   @page :left {
+      margin: 15mm 20mm 15mm 10mm;
+   }
+
+   @page :right {
+      margin: 15mm 10mm 15mm 20mm;
+   }
+
+   p, h2, h3 {
+      orphans: 3; widows: 3;
+   }
+
+   h2, h3 {
+      page-break-after: avoid;
+   }
+}
+</style>
+
+
+
+</head>
+
+<body>
+<h1>Getting and Cleaning Data Course Project</h1>
+
+<p>The purpose of this project is to demonstrate your ability to collect, work with, and clean a data set.</p>
+
+<h3>Review criteria</h3>
+
+<ol>
+<li>The submitted data set is tidy.</li>
+<li>The Github repo contains the required scripts.</li>
+<li>GitHub contains a code book that modifies and updates the available codebooks with the data to indicate all the variables and summaries calculated, along with units, and any other relevant information.</li>
+<li>The README that explains the analysis files is clear and understandable.</li>
+<li>The work submitted for this project is the work of the student who submitted it.</li>
+</ol>
+
+<h3>Getting and Cleaning Data Course Project</h3>
+
+<p>The purpose of this project is to demonstrate your ability to collect, work with, and clean a data set. The goal is to prepare tidy data that can be used for later analysis. You will be graded by your peers on a series of yes/no questions related to the project. You will be required to submit: 1) a tidy data set as described below, 2) a link to a Github repository with your script for performing the analysis, and 3) a code book that describes the variables, the data, and any transformations or work that you performed to clean up the data called CodeBook.md. You should also include a README.md in the repo with your scripts. This repo explains how all of the scripts work and how they are connected.</p>
+
+<p>One of the most exciting areas in all of data science right now is wearable computing - see for example <a href="http://www.insideactivitytracking.com/data-science-activity-tracking-and-the-battle-for-the-worlds-top-sports-brand/">this article</a> . Companies like Fitbit, Nike, and Jawbone Up are racing to develop the most advanced algorithms to attract new users. The data linked to from the course website represent data collected from the accelerometers from the Samsung Galaxy S smartphone. A full description is available at the site where the data was obtained:</p>
+
+<p><a href="http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones">http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones</a></p>
+
+<p>Here are the data for the project:</p>
+
+<p><a href="https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip">https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip</a></p>
+
+<p>You should create one R script called run_analysis.R that does the following.</p>
+
+<ol>
+<li>Merges the training and the test sets to create one data set.</li>
+<li>Extracts only the measurements on the mean and standard deviation for each measurement.</li>
+<li>Uses descriptive activity names to name the activities in the data set</li>
+<li>Appropriately labels the data set with descriptive variable names.</li>
+<li>From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject.</li>
+</ol>
+
+<p>Good luck!</p>
+
+<h2>1. 鐜閰嶇疆浠ュ強鏁版嵁涓嬭浇</h2>
+
+<p>棣栧厛璁剧疆宸ヤ綔璺緞銆佸姞杞藉繀瑕佺殑鍖呫€佷笅杞芥暟鎹瓑銆<82></p>
+
+<pre><code class="r"># 鐢ㄥ埌鐨勫寘鍔犺浇
+library(data.table)
+library(stringr)
+library(dplyr)
+
+# 妫€鏌ュ苟涓斿缓绔嬫暟鎹笅杞界殑鏂囦欢澶&lt;b9&gt;
+if (!file.exists(&quot;downloadData&quot;)) {
+  dir.create(&quot;downloadData&quot;)
+}
+
+# 妫€鏌ヤ箣鍓嶆槸鍚︽湁涓嬭浇杩囩浉搴旀枃浠跺苟涓斿凡缁忚В鍘嬪畬鎴&lt;90&gt;
+fileInDir &lt;- list.files(path = &quot;./downloadData&quot;, recursive = T)
+if (length(fileInDir) != 29) {
+  # 涓嬭浇鍦板潃
+  fileUrl &lt;- &quot;https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip&quot;
+  # 涓嬭浇鍒版湰鍦扮殑浣嶇疆
+  destfile &lt;- &quot;./downloadData/data.zip&quot;
+  # 鏁版嵁涓嬭浇
+  download.file(fileUrl, destfile = destfile, method = &quot;auto&quot;)
+  # 鍘嬬缉鍖呰В鍘&lt;8b&gt;
+  unzip(destfile, exdir = &quot;./downloadData&quot;)
+  # 杈撳嚭涓嬭浇骞朵笖瑙ｅ帇鎴愬姛淇℃伅
+  fileSuccess &lt;- &quot;宸茬粡涓轰綘瀹屾垚浜嗘暟鎹笅杞藉拰瑙ｅ帇...&quot;
+  fileSuccess
+} else {
+  fileExist &lt;- &quot;浣犲凡缁忎笅杞藉苟涓旇В鍘嬭繃璇ユ枃浠朵簡锛岃烦杩囦笅杞借В鍘嬫楠&lt;a4&gt;...&quot;
+  fileExist
+}
+</code></pre>
+
+<pre><code>## [1] &quot;宸茬粡涓轰綘瀹屾垚浜嗘暟鎹笅杞藉拰瑙ｅ帇...&quot;
+</code></pre>
+
+<pre><code class="r"># 璁板綍鏃ユ湡
+dataCreatTime &lt;- file.info(&quot;./downloadData/data.zip&quot;)$ctime
+</code></pre>
+
+<p>鏁版嵁涓嬭浇浜<8e>2017-09-08 15:55:10锛屽湪宸ヤ綔璺緞D:/coursera/cleanData鐨刞downloadData鏂囦欢澶逛笅銆<82></p>
+
+<p>涓嬭浇瀹屾垚鍚庢鏌ヤ竴涓嬫墍涓嬭浇骞朵笖瑙ｅ帇鐨勬枃浠<b6></p>
+
+<pre><code class="r">fileInDir &lt;- list.files(path = &quot;./downloadData&quot;, recursive = T)
+# 濡傛灉涓嬭浇鐨勬枃浠舵暟鐩笉绗﹀悎锛屽垯涓嶈緭鍑虹粨鏋&lt;9c&gt;
+if (length(fileInDir) != 29) {
+    stop(&quot;Maybe there is some problems with your files, please check your files.&quot;)
+} else {
+    fileInDir
+}
+</code></pre>
+
+<pre><code>##  [1] &quot;data.zip&quot;                                                    
+##  [2] &quot;UCI HAR Dataset/activity_labels.txt&quot;                         
+##  [3] &quot;UCI HAR Dataset/features.txt&quot;                                
+##  [4] &quot;UCI HAR Dataset/features_info.txt&quot;                           
+##  [5] &quot;UCI HAR Dataset/README.txt&quot;                                  
+##  [6] &quot;UCI HAR Dataset/test/Inertial Signals/body_acc_x_test.txt&quot;   
+##  [7] &quot;UCI HAR Dataset/test/Inertial Signals/body_acc_y_test.txt&quot;   
+##  [8] &quot;UCI HAR Dataset/test/Inertial Signals/body_acc_z_test.txt&quot;   
+##  [9] &quot;UCI HAR Dataset/test/Inertial Signals/body_gyro_x_test.txt&quot;  
+## [10] &quot;UCI HAR Dataset/test/Inertial Signals/body_gyro_y_test.txt&quot;  
+## [11] &quot;UCI HAR Dataset/test/Inertial Signals/body_gyro_z_test.txt&quot;  
+## [12] &quot;UCI HAR Dataset/test/Inertial Signals/total_acc_x_test.txt&quot;  
+## [13] &quot;UCI HAR Dataset/test/Inertial Signals/total_acc_y_test.txt&quot;  
+## [14] &quot;UCI HAR Dataset/test/Inertial Signals/total_acc_z_test.txt&quot;  
+## [15] &quot;UCI HAR Dataset/test/subject_test.txt&quot;                       
+## [16] &quot;UCI HAR Dataset/test/X_test.txt&quot;                             
+## [17] &quot;UCI HAR Dataset/test/y_test.txt&quot;                             
+## [18] &quot;UCI HAR Dataset/train/Inertial Signals/body_acc_x_train.txt&quot; 
+## [19] &quot;UCI HAR Dataset/train/Inertial Signals/body_acc_y_train.txt&quot; 
+## [20] &quot;UCI HAR Dataset/train/Inertial Signals/body_acc_z_train.txt&quot; 
+## [21] &quot;UCI HAR Dataset/train/Inertial Signals/body_gyro_x_train.txt&quot;
+## [22] &quot;UCI HAR Dataset/train/Inertial Signals/body_gyro_y_train.txt&quot;
+## [23] &quot;UCI HAR Dataset/train/Inertial Signals/body_gyro_z_train.txt&quot;
+## [24] &quot;UCI HAR Dataset/train/Inertial Signals/total_acc_x_train.txt&quot;
+## [25] &quot;UCI HAR Dataset/train/Inertial Signals/total_acc_y_train.txt&quot;
+## [26] &quot;UCI HAR Dataset/train/Inertial Signals/total_acc_z_train.txt&quot;
+## [27] &quot;UCI HAR Dataset/train/subject_train.txt&quot;                     
+## [28] &quot;UCI HAR Dataset/train/X_train.txt&quot;                           
+## [29] &quot;UCI HAR Dataset/train/y_train.txt&quot;
+</code></pre>
+
+<p>棰勬湡鏂囦欢鏁扮洰鍖呮嫭鎵€涓嬭浇鐨刣ata.zip锛屼竴鍏辨湁29涓枃浠躲€傚疄闄呮湁29涓枃浠躲€<82></p>
+
+<h2>2. 鏁版嵁鎷兼帴</h2>
+
+<p>鍙傝€冧簡<a href="https://github.com/swsoyee/GettingAndCleaningData/tree/master/Project">Benjamin Chan</a>鐨勮緭鍑虹粨鏋滐紝鐙珛瀹屾垚澶勭悊浠ｇ爜銆<82></p>
+
+<hr/>
+
+<p>鏍规嵁鎵€涓嬭浇鐨勬枃浠堕噷鐨刞README.md璇存槑锛屾垜浠彲浠ヤ簡瑙ｅ埌浠ヤ笅淇℃伅锛<9a></p>
+
+<ol>
+<li><p>鏁版嵁闆嗛噷鍖呭惈浜哷train<code>鍜宍test</code>涓や釜鏂囦欢澶癸紝鍏朵腑鐨剆ubject_鍓嶇紑鐨勬枃浠朵负娴嬭瘯鑰呯紪鍙凤紙涓€鍏<b1>30鍚嶆祴璇曡€咃紝琚垎涓轰簡2缁勶紝鎵€浠ヤ袱涓枃浠堕噷鐨勬暟瀛楀悎璧锋潵涓<ba>1~30锛夛紱</p></li>
+<li><p>涓婅堪鐨勪袱涓枃浠跺す涓殑<code>y_鍓嶇紑</code>鐨勬枃浠朵负姣忎竴鏉¤褰曟墍瀵瑰簲鐨勫姩浣滐紝鍔ㄤ綔绫诲瀷涓€鍏辨湁6绉嶏紱</p></li>
+<li><p>涓婅堪鐨勪袱涓枃浠跺す涓殑<code>X_鍓嶇紑</code>鐨勬枃浠朵负姣忎竴鏉¤褰曟墍瀵瑰簲鐨勬煇涓€鏃跺埢鐨勬墍鏈夋祴璇曞潗鏍囷紝绾靛垪涓烘椂闂<b4></p></li>
+<li><p><code>features.txt</code>閲屼竴鍏辨湁561琛岋紝瀵瑰簲X_鍓嶇紑鐨勬枃浠剁殑姣忎竴鍒椼€<82></p></li>
+</ol>
+
+<hr/>
+
+<p>鏍规嵁瑕佹眰锛屾垜浠彲浠ユ寜浠ヤ笅鎬濊矾杩涜鍒嗘瀽锛<9a></p>
+
+<ol>
+<li><p>瑕佹眰涓彧闇€瑕佹娊鍙杕ean鍜宻tandard deviation杩欎袱椤癸紝涔熷氨鏄鍙互浠巂features.txt<code>涓幏鍙栨墍鏈塵ean鍜宻tandard deviation鎵€鍦ㄧ殑琛屾暟锛屽搴旀娊鍙朮_鍓嶇紑鏂囦欢閲岀殑鍏蜂綋鍒楁瀯鎴恅xMeanSD</code>锛<9b></p></li>
+<li><p>鎶奰subjects_test.txt<code></code>xMeanSD<code></code>y_test.txt杩涜鍒楀悎骞讹紝train閮ㄥ垎鐨勬暟鎹泦杩涜鐩稿悓澶勭悊锛<8c>
+鐒跺悗鍐嶆妸train鍜宼est杩涜琛屽悎骞讹紱</p></li>
+<li><p>鍒╃敤<code>y_鍓嶇紑</code>鏂囦欢涓殑鏁板瓧锛屽搴擿activity_labels.txt杩涜鍖归厤杩藉姞鏂扮殑涓€鍒楋紙鏁板瓧鍒楀彲浠ュ厛淇濈暀锛夛紱</p></li>
+</ol>
+
+<p>Step1. 璁剧疆澶勭悊涓婅堪瑕佹眰鐨勫嚱鏁<b0></p>
+
+<pre><code class="r">step1 &lt;- function(data){
+  # 閫夋嫨澶勭悊train闆嗚繕鏄痶est闆&lt;86&gt;
+  if (tolower(data) == &quot;train&quot;) {
+    input = c(&quot;/X_train.txt&quot;, &quot;/y_train.txt&quot;, &quot;/subject_train.txt&quot;)
+  } else if (tolower(data) == &quot;test&quot;) {
+    input = c(&quot;/X_test.txt&quot;, &quot;/y_test.txt&quot;, &quot;/subject_test.txt&quot;)
+  } else {
+    stop(&quot;Parameter error! Only &#39;train&#39; or &#39;test&#39; are permitted.&quot;)
+  }
+
+  # 璇诲彇X鍧愭爣鏂囦欢
+  xTrainUrl &lt;- grep(pattern = input[1], x = fileInDir, value = T)
+  xTrain &lt;- fread(input = paste0(&quot;./downloadData/&quot;, xTrainUrl))
+  # 璇诲彇features鏂囦欢
+  featuresUrl &lt;- grep(pattern = &quot;features.txt&quot;, x = fileInDir, value = T)
+  features &lt;- fread(input = paste0(&quot;./downloadData/&quot;, featuresUrl))
+
+  # 鎸戦€夊嚭瑕佹眰鐨刴ean鍜宻d鍏抽敭瀛楃殑鍒椾綅缃&lt;ae&gt;
+  columnOfMeanAndSD &lt;- features[grepl(pattern = &quot;mean|std&quot;, x = tolower(features$V2)),]
+  columnOfMeanAndSD$V1 &lt;- paste0(&quot;V&quot;, columnOfMeanAndSD$V1)
+  # 鏍规嵁鍒椾綅缃娊鍙栨寚瀹氬垪
+  xTrainMeanAndSD &lt;- subset(xTrain, select = columnOfMeanAndSD$V1)
+  names(xTrainMeanAndSD) &lt;- columnOfMeanAndSD$V2
+
+  # 璇诲彇y鍧愭爣鏂囦欢
+  yTrainUrl &lt;- grep(pattern = input[2], x = fileInDir, value = T)
+  yTrain &lt;- fread(input = paste0(&quot;./downloadData/&quot;, yTrainUrl))
+  # 璇诲彇娲诲姩鏁板瓧鍜屾弿杩板尮閰嶆枃浠&lt;b6&gt;
+  activityLabelsUrl &lt;- grep(pattern = &quot;activity_labels.txt&quot;, x = fileInDir, value = T)
+  activityLabels &lt;- fread(input = paste0(&quot;./downloadData/&quot;, activityLabelsUrl))
+  # 杩藉姞鎻忚堪鍒皔Train閲岄潰
+  yTrainAppend &lt;- merge(x = yTrain, y = activityLabels, by = &quot;V1&quot;, sort = FALSE)
+
+  # 璇诲彇鍙楄瘯鑰呮枃浠&lt;b6&gt;
+  subjectTrainUrl &lt;- grep(pattern = input[3], x = fileInDir, value = T)
+  subjectTrain &lt;- fread(input = paste0(&quot;./downloadData/&quot;, subjectTrainUrl))
+
+  # 鍒楃浉骞舵嫾鍚堟墍鏈夋枃浠&lt;b6&gt;
+  stepOneMerge &lt;- cbind(subject = subjectTrain$V1, activity = yTrainAppend$V2, xTrainMeanAndSD) 
+  data.table(stepOneMerge)
+}
+</code></pre>
+
+<p>Step2. 璋冪敤<code>step1</code>鍑芥暟锛屽涓や釜鏁版嵁闆嗚繘琛屽鐞<86>, 鍚堝苟涓や釜鏁版嵁闆嗭紝骞朵笖melt浣垮叾涓€鍒楀彧鏈変竴涓€笺€<82></p>
+
+<pre><code class="r">dtTrain &lt;- step1(&quot;train&quot;)
+dtTest &lt;- step1(&quot;test&quot;)
+
+dt &lt;- rbind(dtTrain, dtTest)
+
+step2 &lt;-  melt(data = dt, 
+            id.vars = c(&quot;subject&quot;, &quot;activity&quot;), 
+       measure.vars = names(dt)[3:ncol(dt)]
+       )
+head(step2)
+</code></pre>
+
+<pre><code>##    subject activity          variable     value
+## 1:       1 STANDING tBodyAcc-mean()-X 0.2885845
+## 2:       1 STANDING tBodyAcc-mean()-X 0.2784188
+## 3:       1 STANDING tBodyAcc-mean()-X 0.2796531
+## 4:       1 STANDING tBodyAcc-mean()-X 0.2791739
+## 5:       1 STANDING tBodyAcc-mean()-X 0.2766288
+## 6:       1 STANDING tBodyAcc-mean()-X 0.2771988
+</code></pre>
+
+<p>Step3. 鎶婇噸鏁村悗鐨剉arible鍒椾腑鍙橀噺鍚嶅啀娆″垎瑙ｃ€<82>
+棣栧厛灏濊瘯鎶婃渶鍚庝竴涓<aa>-鍚庣殑XYZ鍧愭爣缁欏垎瑙ｏ紝濡傛灉娌℃湁锛屽垯涓篘A</p>
+
+<pre><code class="r"># 鍙杤ariable灞炴€х殑鏈€鍚庝竴浣嶏紝澧炲姞涓€鍒楄酱灞炴€&lt;a7&gt;
+step2[, axis := substr(x = variable, 
+                   start = nchar(as.character(variable)), 
+                    stop = nchar(as.character(variable)))]
+# 妫€鏌ヤ竴涓媋xis閲岄潰鐨勬墍鏈夊€&lt;bc&gt;
+unique(step2$axis)
+</code></pre>
+
+<pre><code>## [1] &quot;X&quot; &quot;Y&quot; &quot;Z&quot; &quot;)&quot;
+</code></pre>
+
+<pre><code class="r"># 濡傛灉variable灞炴€х殑鏈€鍚庝竴浣嶄笉涓篨YZ锛&lt;8c&gt; 鍒欐妸鍏跺彉涓篘A鍊&lt;bc&gt;
+step2$axis &lt;- gsub(pattern = &quot;[^XYZ]&quot;, replacement = NA, x = step2$axis)
+# 鍙&lt;96&gt;-X-涓棿鐨勫瓧娈典綔涓烘柟娉曞睘鎬э紝澶ф涓簃ean()鎴栬€呮槸std()
+step2$method &lt;- str_extract(string = step2$variable, pattern = &quot;-(.+?)\\(\\)&quot;)
+# 妫€鏌ヤ竴涓媘ethod閲岄潰鐨勬墍鏈夊€&lt;bc&gt;
+unique(step2$method)
+</code></pre>
+
+<pre><code>## [1] &quot;-mean()&quot;     &quot;-std()&quot;      &quot;-meanFreq()&quot; NA
+</code></pre>
+
+<pre><code class="r"># 杩涜绗﹀彿鏁寸悊
+step2$method &lt;- str_replace_all(string = step2$method, 
+                               pattern = &quot;[-\\(\\)]&quot;,
+                           replacement = &quot;&quot;)
+# 鍙&lt;96&gt;-鍓嶇殑閮ㄥ垎浣滀负feature灞炴€&lt;a7&gt;
+step2$feature &lt;- str_extract(string = step2$variable, pattern = &quot;(.+?)-&quot;)
+# 妫€鏌ヤ竴涓媐eature閲岄潰鐨勬墍鏈夊€&lt;bc&gt;
+unique(step2$feature)
+</code></pre>
+
+<pre><code>##  [1] &quot;tBodyAcc-&quot;             &quot;tGravityAcc-&quot;         
+##  [3] &quot;tBodyAccJerk-&quot;         &quot;tBodyGyro-&quot;           
+##  [5] &quot;tBodyGyroJerk-&quot;        &quot;tBodyAccMag-&quot;         
+##  [7] &quot;tGravityAccMag-&quot;       &quot;tBodyAccJerkMag-&quot;     
+##  [9] &quot;tBodyGyroMag-&quot;         &quot;tBodyGyroJerkMag-&quot;    
+## [11] &quot;fBodyAcc-&quot;             &quot;fBodyAccJerk-&quot;        
+## [13] &quot;fBodyGyro-&quot;            &quot;fBodyAccMag-&quot;         
+## [15] &quot;fBodyBodyAccJerkMag-&quot;  &quot;fBodyBodyGyroMag-&quot;    
+## [17] &quot;fBodyBodyGyroJerkMag-&quot; NA
+</code></pre>
+
+<pre><code class="r"># 杩涜绗﹀彿鏁寸悊
+step2$feature &lt;- str_replace_all(string = step2$feature, 
+                                pattern = &quot;[-]&quot;,
+                            replacement = &quot;&quot;)
+# 鍘绘帀variable鍒楃殑鏁版嵁
+step2Output &lt;- step2[, variable:=NULL]
+head(step2Output)
+</code></pre>
+
+<pre><code>##    subject activity     value axis method  feature
+## 1:       1 STANDING 0.2885845    X   mean tBodyAcc
+## 2:       1 STANDING 0.2784188    X   mean tBodyAcc
+## 3:       1 STANDING 0.2796531    X   mean tBodyAcc
+## 4:       1 STANDING 0.2791739    X   mean tBodyAcc
+## 5:       1 STANDING 0.2766288    X   mean tBodyAcc
+## 6:       1 STANDING 0.2771988    X   mean tBodyAcc
+</code></pre>
+
+<p>濡傛灉鎰挎剰锛岃繕鍙互鎶奻eature杩涜缁嗗垎锛岃繖閲屽氨涓嶈繘琛岀粏鍒嗕簡銆<82></p>
+
+<p>Step3. 鍦ㄤ笂杩版暣鐞嗚繃鐨勬暟鎹泦鐨勫熀纭€涓婏紝鏋勫缓鏂版暟鎹泦锛屾寜activity鍜宻ubject杩涜鍒嗙被鑾峰彇mean銆<82></p>
+
+<pre><code class="r">avgTidy &lt;- step2Output %&gt;% 
+  group_by(subject, activity, feature, axis, method) %&gt;% 
+  summarise(mean = mean(value), count = n())
+# 鎶婇儴鍒嗗瓧娈佃浆鎴恌actor浠ヤ究浜庣粺璁&lt;a1&gt;
+avgTidy$activity &lt;- as.factor(avgTidy$activity)
+avgTidy$feature &lt;- as.factor(avgTidy$feature)
+avgTidy$axis &lt;- as.factor(avgTidy$axis)
+avgTidy$method &lt;- as.factor(avgTidy$method)
+
+# 澶囬€夛細鍦ㄨ捣鍒濇娊鍙栫殑鏃跺€欐妸angle()閮ㄥ垎鐨勬暟鎹篃鍖呭惈浜嗭紝閫氳繃features == NA鍘婚櫎
+avgTidy &lt;- avgTidy[!is.na(avgTidy$feature), ]
+
+head(avgTidy)
+</code></pre>
+
+<pre><code>## Source: local data frame [6 x 7]
+## Groups: subject, activity, feature, axis [2]
+## 
+## # A tibble: 6 x 7
+##   subject activity  feature   axis   method        mean count
+##     &lt;int&gt;   &lt;fctr&gt;   &lt;fctr&gt; &lt;fctr&gt;   &lt;fctr&gt;       &lt;dbl&gt; &lt;int&gt;
+## 1       1   LAYING fBodyAcc      X     mean -0.93909905    50
+## 2       1   LAYING fBodyAcc      X meanFreq -0.15879267    50
+## 3       1   LAYING fBodyAcc      X      std -0.92443743    50
+## 4       1   LAYING fBodyAcc      Y     mean -0.86706521    50
+## 5       1   LAYING fBodyAcc      Y meanFreq  0.09753484    50
+## 6       1   LAYING fBodyAcc      Y      std -0.83362556    50
+</code></pre>
+
+<pre><code class="r">summary(avgTidy)
+</code></pre>
+
+<pre><code>##     subject                   activity            feature       axis     
+##  Min.   : 1.0   LAYING            :2370   fBodyAcc    :1620   X   :3420  
+##  1st Qu.: 8.0   SITTING           :2370   fBodyAccJerk:1620   Y   :3420  
+##  Median :15.5   STANDING          :2370   fBodyGyro   :1620   Z   :3420  
+##  Mean   :15.5   WALKING           :2370   tBodyAcc    :1080   NA&#39;s:3960  
+##  3rd Qu.:23.0   WALKING_DOWNSTAIRS:2370   tBodyAccJerk:1080              
+##  Max.   :30.0   WALKING_UPSTAIRS  :2370   tBodyGyro   :1080              
+##                                           (Other)     :6120              
+##       method          mean              count      
+##  mean    :5940   Min.   :-0.99767   Min.   :36.00  
+##  meanFreq:2340   1st Qu.:-0.95242   1st Qu.:49.00  
+##  std     :5940   Median :-0.34232   Median :54.50  
+##                  Mean   :-0.41241   Mean   :57.22  
+##                  3rd Qu.:-0.03654   3rd Qu.:63.25  
+##                  Max.   : 0.97451   Max.   :95.00  
+## 
+</code></pre>
+
+<pre><code class="r">#瀵煎嚭鏂囦欢
+write.table(avgTidy, file = &quot;avgTidy.txt&quot;, quote = FALSE, sep = &quot;\t&quot;, row.names = FALSE)
+</code></pre>
+
+</body>
+
+</html>
